@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Lightsabers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ModelsLS\Elemental Nature\CE3E3V2_EN_Switch_1.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\CE3E3V2_EN_Switch_2.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_Emitter_1.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_Emitter_2.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_EndCap_1.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_EndCap_2.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_Sleeve_1.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_Sleeve_2.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_Sleeve_3.stl" />
+    <None Include="wwwroot\ModelsLS\Elemental Nature\EN_Sleeve_4.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\CE3E3V2_PJ_Switch_1.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\CE3E3V2_PJ_Switch_2.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_Emitter_1.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_Emitter_2.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_EndCap_1.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_EndCap_2.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_Sleeve_1.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_Sleeve_2.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_Sleeve_3.stl" />
+    <None Include="wwwroot\ModelsLS\Peace and Justice\PJ_Sleeve_4.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\CE3E3V2_PC_Switch_1.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\CE3E3V2_PC_Switch_2.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_Emitter_1.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_Emitter_2.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_End_Cap_1.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_End_Cap_2.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_end_cap_extra.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_Sleeve_1.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_Sleeve_2.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_Sleeve_3.stl" />
+    <None Include="wwwroot\ModelsLS\Power and Control\PC_Sleeve_4.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\CE3E3V2_PD_Switch_1.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\CE3E3V2_PD_Switch_2.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_Emitter_1.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_Emitter_2.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_EndCap_1.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_End_Cap_2.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_End_Cap_extra.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_Sleeve_1.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_Sleeve_2.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_Sleeve_3.stl" />
+    <None Include="wwwroot\ModelsLS\Protection and Defense\PD_Sleeve_4.stl" />
+  </ItemGroup>
+
+</Project>

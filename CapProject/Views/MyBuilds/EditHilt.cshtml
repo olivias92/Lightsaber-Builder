@@ -1,0 +1,35 @@
+﻿@model CapProject.ViewModels.LightSaberVM
+@{
+    ViewData["Title"] = "Choice a Hilt";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hilt</title>
+</head>
+
+<body>
+    <h1>Choose Your Hilt</h1>
+
+    <form asp-action="EditHilt" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="idGiven" />
+
+        <div>
+            <label asp-for="hiltSelected" class="form-label">Hilt</label>
+            @*  <input asp-for="hiltSelected" class="form-control" /> *@ <!--This line caused a "0" in the dropdown-->
+            <select asp-for="hiltSelected" asp-items="Model.hiltOptions" class="form-control">
+                <option value="">-- Select a Hilt --</option>
+            </select>
+
+            <span asp-validation-for="hiltSelected" class="text-danger"></span>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Next</button>
+    </form>
+
+</body>
+</html>

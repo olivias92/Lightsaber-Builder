@@ -1,0 +1,31 @@
+﻿@model CapProject.ViewModels.LightSaberVM
+@{
+    ViewData["Title"] = "Choice a Color";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color</title>
+</head>
+
+<body>
+    <h1>Choose Your Color</h1>
+
+    <form asp-action="EditColor" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="idGiven" />
+
+        <label asp-for="colorSelected" class="form-label">Color</label>
+        <select asp-for="colorSelected" asp-items="Model.colorOptions" class="form-control">
+            <option value="">-- Select a Color --</option>
+        </select>
+
+        <span asp-validation-for="colorSelected" class="text-danger"></span>
+
+        <button type="submit" class="btn btn-primary">Next</button>
+    </form>
+
+</body>
+</html>

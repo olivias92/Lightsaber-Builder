@@ -1,0 +1,35 @@
+﻿@using CapProject.ViewModels
+@model LightSaberVM
+@{
+    ViewData["Title"] = "New Builds";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Build</title>
+</head>
+
+
+    <body>
+        <br />
+        <br />
+        <form asp-action="EditName" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="idGiven" />
+
+            <div class="mb-3">
+                <label asp-for="nameSelected" class="form-label">Name:</label>
+                <input asp-for="nameSelected" class="form-control" />
+                <span asp-validation-for="nameSelected" class="text-danger"></span>
+            </div>
+ 
+             <button type="submit" class="btn btn-primary">Next</button>
+    
+        </form>
+
+    </body>
+
+</html>
+

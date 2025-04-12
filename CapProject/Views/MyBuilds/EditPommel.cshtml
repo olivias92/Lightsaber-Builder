@@ -1,0 +1,33 @@
+﻿@model CapProject.ViewModels.LightSaberVM
+@{
+    ViewData["Title"] = "Choice a Pommel";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pommel</title>
+</head>
+
+<body>
+    <h1>Choose Your Pommel</h1>
+
+    <form asp-action="EditPommel" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="idGiven" />
+
+        <label asp-for="pommelSelected" class="form-label">Pommel</label>
+        @*   <input asp-for="pommelSelected" class="form-control" /> *@  <!--This line caused a "0" in the dropdown-->
+        <select asp-for="pommelSelected" asp-items="Model.pommelOptions" class="form-control">
+            <option value="">-- Select a Pommel --</option>
+        </select>
+
+        <span asp-validation-for="pommelSelected" class="text-danger"></span>
+  
+
+        <button type="submit" class="btn btn-primary">Next</button>
+    </form>
+
+</body>
+</html>
