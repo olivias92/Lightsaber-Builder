@@ -1,6 +1,7 @@
 # Lightsaber-Builder
 
 ---- IMPORTANT NOTES ----
+
 Please read this section or the .txt readme before running this application as problems may occcur
 
 This project was created for a college-level capstone course in Spring of 2025
