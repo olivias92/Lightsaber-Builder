@@ -5,14 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
+// This controller is based on NewBuildController.cs, but
+// modified to handle editing rather than creations
+
 namespace CapProject.Controllers {
     public class MyBuildsController : Controller {
 
+        // Context for DBContext file
         private LightsaberContext context { get; set; }
 
         public MyBuildsController(LightsaberContext ctx) => context = ctx;
 
 
+        #region Helper Methods
         // Method to create dropdown options for each component/color
         public static List<SelectListItem> createDrop(string type, LightsaberContext context) {
             return context.Components
@@ -24,6 +29,8 @@ namespace CapProject.Controllers {
 
         } // End method
 
+
+        // Method for creating the list of lightsaber blade colors
         public static List<SelectListItem> colorList() {
             var colors = new List<SelectListItem> {
                 new SelectListItem {Value = "Blue", Text = "Blue"},
@@ -38,7 +45,12 @@ namespace CapProject.Controllers {
         } // End method
 
 
+        #endregion
 
+
+        #region Base Index/Edit/Delete Functions
+
+        // Basic controller actions
         [HttpGet]
         public IActionResult Index() {
 
@@ -75,10 +87,22 @@ namespace CapProject.Controllers {
         [HttpGet]
         public IActionResult Delete(int lsID) {
             ViewBag.Action = "Delete";
-            return View();  
+            var lightsaber = context.Lightsabers.Find(lsID);
+            return View(lightsaber);  
         } // End method
 
 
+        [HttpPost]
+        public IActionResult Delete(Lightsaber lightsaber) {
+            context.Lightsabers.Remove(lightsaber);
+            context.SaveChanges();
+            return RedirectToAction("Index", "MyBuilds");
+        } // End method
+
+        #endregion
+
+
+        #region Get/Post methods MyBuilds pages
 
         // EditName methods
         [HttpGet]
@@ -107,9 +131,6 @@ namespace CapProject.Controllers {
             } // End if
 
             lightsaber.name = model.nameSelected;
-            //model.nameSelected = lightsaber.name;
-            //context.SaveChanges();
-
 
             return RedirectToAction("EditEmitter", new { lsId = model.idGiven });
         } // End method
@@ -124,7 +145,10 @@ namespace CapProject.Controllers {
             var viewMod = new LightSaberVM {
                 idGiven = lsID,
                 emitterSelected = lightsaber.Emitter,
-                emitterOptions = createDrop("Emitter", context)
+                emitterOptions = createDrop("Emitter", context),
+                emitterPath = context.Components
+                    .Where(c => c.component_type == "Emitter")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath)
             }; // End var
 
             return View(viewMod);
@@ -138,11 +162,13 @@ namespace CapProject.Controllers {
             if (string.IsNullOrWhiteSpace(model.emitterSelected.ToString())) {
                 ModelState.AddModelError("emitterSelected", "Emitter is required.");
                 model.emitterOptions = createDrop("Emitter", context);
+                model.emitterPath = context.Components
+                     .Where(c => c.component_type == "Emitter")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath);
                 return View(model);
             } // End if
 
             lightsaber.Emitter = model.emitterSelected;
-            //context.SaveChanges();
 
 
             return RedirectToAction("EditSwitch", new { lsId = model.idGiven });
@@ -158,7 +184,10 @@ namespace CapProject.Controllers {
             var viewMod = new LightSaberVM {
                 idGiven = lsID,
                 switchSelected = lightsaber.Switch,
-                switchOptions = createDrop("Switch", context)
+                switchOptions = createDrop("Switch", context),
+                switchPath = context.Components
+                    .Where(c => c.component_type == "Switch")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath)
             }; // End var
 
             return View(viewMod);
@@ -171,6 +200,9 @@ namespace CapProject.Controllers {
             if (string.IsNullOrWhiteSpace(model.switchSelected.ToString())) {    
                 ModelState.AddModelError("switchSelected", "Switch is required.");
                 model.switchOptions = createDrop("Switch", context);
+                model.switchPath = context.Components
+                   .Where(c => c.component_type == "Switch")
+                   .ToDictionary(c => c.component_id.ToString(), c => c.filepath);
                 return View(model);
             } // End if
 
@@ -191,7 +223,10 @@ namespace CapProject.Controllers {
             var viewMod = new LightSaberVM {
                 idGiven = lsID,
                 hiltSelected = lightsaber.Hilt,
-                hiltOptions = createDrop("Hilt", context)
+                hiltOptions = createDrop("Hilt", context),
+                hiltPath = context.Components
+                    .Where(c => c.component_type == "Hilt")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath)
             }; // End var
 
             return View(viewMod);
@@ -204,6 +239,9 @@ namespace CapProject.Controllers {
             if (string.IsNullOrWhiteSpace(model.hiltSelected.ToString())) {
                 ModelState.AddModelError("hiltSelected", "Hilt is required.");
                 model.hiltOptions = createDrop("Hilt", context);
+                model.hiltPath = context.Components
+                    .Where(c => c.component_type == "Hilt")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath);
                 return View(model);
             } // End if
 
@@ -224,7 +262,10 @@ namespace CapProject.Controllers {
             var viewMod = new LightSaberVM {
                 idGiven = lsID,
                 pommelSelected = lightsaber.Pommel,
-                pommelOptions = createDrop("Pommel", context)
+                pommelOptions = createDrop("Pommel", context),
+                pommelPath = context.Components
+                    .Where(c => c.component_type == "Pommel")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath)
             }; // End var
 
             return View(viewMod);
@@ -237,6 +278,9 @@ namespace CapProject.Controllers {
             if (string.IsNullOrWhiteSpace(model.pommelSelected.ToString())) {
                 ModelState.AddModelError("pommelSelected", "Pommel is required.");
                 model.pommelOptions = createDrop("Pommel", context);
+                model.pommelPath = context.Components
+                    .Where(c => c.component_type == "Pommel")
+                    .ToDictionary(c => c.component_id.ToString(), c => c.filepath);
                 return View(model);
             } // End if
 
@@ -293,6 +337,8 @@ namespace CapProject.Controllers {
         public IActionResult EditSuccess() {
             return View();
         } // End method
+
+        #endregion
 
 
     } // End class

@@ -8,29 +8,124 @@
 
 <head>
     <title>Switch</title>
+
+
+    <!--Page-specific styles-->
+    <style>
+
+        #threejs-container {
+            width: 500px;
+            height: 400px;
+            border: 2px solid #ccc;
+            margin-right: 50px;
+            position: initial;
+            overflow: hidden;
+        }
+
+        section {
+        }
+
+        #form {
+            margin-top: 85px;
+            margin-left: 100px;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        #info {
+            border-bottom: 1px solid;
+            border-bottom-color: #2E557C;
+        }
+
+    </style>
+
 </head>
 
 <body>
-    <h1>Choose Your Switch</h1>
+    <h1>Update Your Switch</h1>
 
-    <form asp-action="EditSwitch" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <input type="hidden" asp-for="idGiven" />
+        <!--Scripts for stlLoad.js-->
 
-        <div>
-            <label asp-for="switchSelected" class="form-label">Switch</label>
-            @*   <input asp-for="switchSelected" class="form-control" /> *@ <!--This line caused a "0" in the dropdown-->
-            <select asp-for="switchSelected" asp-items="Model.switchOptions" class="form-control">
-                <option value="">-- Select a Switch --</option>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "/js/three/build/three.module.min.js",
+            "three/examples/jsm/loaders/STLLoader.js": "/js/three/examples/jsm/loaders/STLLoader.js"
+          }
+        }
+    </script>
 
-            </select>
+    <script type="module" src="~/js/editStlLoad.js"></script>
+    <script>
+        console.log("Inline script is running for switch editing");
+    </script>
 
-            <span asp-validation-for="switchSelected" class="text-danger"></span>
+    <div class="container">
+        <div class="row">
 
-        </div>
-        <button type="submit" class="btn btn-primary">Next</button>
+            <!--Div for the Three.js scene-->
+            <div class="col-md-8">
+                <div id="threejs-container-editSW"></div>
+            </div>
+
+
+            <!--Div for the form-->
+            <div class="col-md-4">
+
+                <!--Div for info-->
+                <div id="info">
+                     <p><i>The housing unit for the inner works of the Lightsaber,
+                        where the Kyber crystal works its magic.
+                    </i></p>
+                </div>
+                <br />
+                <br />
+                <br />
+
+                <form asp-action="EditSwitch" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="idGiven" />
+
+                    <div>
+                        <label asp-for="switchSelected" class="form-label">Switch</label>
+                       
+                        <select asp-for="switchSelected" asp-items="Model.switchOptions" id="componentSelectEdit" class="form-control">
+                            <option value="">-- Select a Switch --</option>
+
+                        </select>
+
+                        <script>
+                            const stlFiles = @Html.Raw(Json.Serialize(Model.switchPath));
+
+                            document.getElementById("componentSelectEdit").addEventListener("change", function() {
+                                const selectedComponent = this.value;
+                                if (stlFiles[selectedComponent]) {
+                                    loadModel(stlFiles[selectedComponent]);
+                                }
+                            });
+
+                        </script>
+
+                        <span asp-validation-for="switchSelected" class="text-danger"></span>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Next</button>
 
     </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    
 
 </body>
 </html>

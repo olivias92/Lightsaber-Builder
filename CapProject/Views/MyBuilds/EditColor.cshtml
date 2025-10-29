@@ -8,12 +8,35 @@
 
 <head>
     <title>Color</title>
+
+    <!--Page-specific styles-->
+    <style>
+
+        #info {
+            border-bottom: 1px solid;
+            border-bottom-color: #2E557C;
+        }
+
+    </style>
+
 </head>
 
 <body>
-    <h1>Choose Your Color</h1>
+    <h1>Update Your Color</h1>
+
+    <!--Div for info-->
+    <div id="info">
+        <p>
+            <i>
+                The color of the blade, determined by when Force-sensitives obtain them.
+            </i>
+        </p>
+    </div>
+    <br />
+
 
     <form asp-action="EditColor" method="post">
+
         <div asp-validation-summary="All" class="text-danger"></div>
         <input type="hidden" asp-for="idGiven" />
 

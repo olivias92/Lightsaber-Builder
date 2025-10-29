@@ -8,26 +8,119 @@
 
 <head>
     <title>Pommel</title>
+
+    <!--Page-specific styles-->
+    <style>
+        #threejs-container {
+            width: 500px;
+            height: 400px;
+            border: 2px solid #ccc;
+            margin-right: 50px;
+            position: initial;
+            overflow: hidden;
+        }
+
+        section {
+            
+        }
+
+        #form {
+            margin-top: 85px;
+            margin-left: 100px;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+        
+        button {
+            margin-top: 10px;
+        }
+
+        #info {
+            border-bottom: 1px solid;
+            border-bottom-color: #2E557C;
+        }
+
+    </style>
+
 </head>
 
 <body>
-    <h1>Choose Your Pommel</h1>
+    <h1>Update Your Pommel</h1>
 
-    <form asp-action="EditPommel" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <input type="hidden" asp-for="idGiven" />
+        <!--Scripts for stlLoad.js-->
 
-        <label asp-for="pommelSelected" class="form-label">Pommel</label>
-        @*   <input asp-for="pommelSelected" class="form-control" /> *@  <!--This line caused a "0" in the dropdown-->
-        <select asp-for="pommelSelected" asp-items="Model.pommelOptions" class="form-control">
-            <option value="">-- Select a Pommel --</option>
-        </select>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "/js/three/build/three.module.min.js",
+            "three/examples/jsm/loaders/STLLoader.js": "/js/three/examples/jsm/loaders/STLLoader.js"
+          }
+        }
+    </script>
 
-        <span asp-validation-for="pommelSelected" class="text-danger"></span>
+    <script type="module" src="~/js/editStlLoad.js"></script>
+    <script>
+        console.log("Inline script is running for pommel");
+    </script>
+
+    <div class="container">
+        <div class="row">
+
+            <!--Div for the Three.js scene-->
+            <div class="col-md-8">
+                <div id="threejs-container-editPO"></div>
+            </div>
+
+
+            <!--Div for the form-->
+            <div class="col-md-4">
+
+                <!--Div for the form-->
+                <div class="col-md-4">
+
+
+                    <div id="info">
+                        <p><i>The lowermost part of the Lightsaber that tops it all off.</i></p>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+
+                <form asp-action="EditPommel" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="idGiven" />
+
+                    <label asp-for="pommelSelected" class="form-label">Pommel</label>
+                   
+                    <select asp-for="pommelSelected" asp-items="Model.pommelOptions" id="componentSelectEdit" class="form-control">
+                        <option value="">-- Select a Pommel --</option>
+                    </select>
+
+                     <script>
+                        const stlFiles = @Html.Raw(Json.Serialize(Model.pommelPath));
+
+                        document.getElementById("componentSelectEdit").addEventListener("change", function() {
+                            const selectedComponent = this.value;
+                            if (stlFiles[selectedComponent]) {
+                                loadModel(stlFiles[selectedComponent]);
+                            }
+                        });
+                    </script>
+
+                    <span asp-validation-for="pommelSelected" class="text-danger"></span>
   
 
-        <button type="submit" class="btn btn-primary">Next</button>
-    </form>
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    
 
 </body>
 </html>

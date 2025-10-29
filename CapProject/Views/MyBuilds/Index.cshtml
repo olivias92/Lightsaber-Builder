@@ -3,10 +3,13 @@
     ViewData["Title"] = "My Builds";
 }
 
+
+<!--Styles for MyBuilds page-->
 <style>
 
     table > * {
         color: white;
+        border: 1px solid;
     }
 
     tr > td {
@@ -15,12 +18,22 @@
 
 </style>
 
-<br />
+
 <br /> 
-<h2>My Builds</h2>
+
+
 
 
 <body>
+
+    <h2>My Builds</h2>
+    <div id="subtext">
+        <i>
+            Manage your previous builds, or remove them.
+        </i>
+    </div>
+    <br />
+    <br />
 
 <table class="table">
     <thead>
@@ -44,7 +57,7 @@
                     </a>
                 </td>
             </tr>
-        }
+        } @*End foreach*@
     </tbody>
 </table>
 

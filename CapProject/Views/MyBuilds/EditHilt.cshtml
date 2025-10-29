@@ -8,28 +8,121 @@
 
 <head>
     <title>Hilt</title>
+
+    <!--Page-specific styles-->
+     <style>
+
+        #threejs-container {
+            width: 500px;
+            height: 400px;
+            border: 2px solid #ccc;
+            margin-right: 50px;
+            position: initial;
+            overflow: hidden;
+        }
+
+        section {
+        }
+
+        #form {
+            margin-top: 85px;
+            margin-left: 100px;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        #info {
+            border-bottom: 1px solid;
+            border-bottom-color: #2E557C;
+        }
+
+    </style>
+
 </head>
 
 <body>
-    <h1>Choose Your Hilt</h1>
+    <h1>Update Your Hilt</h1>
 
-    <form asp-action="EditHilt" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <input type="hidden" asp-for="idGiven" />
 
-        <div>
-            <label asp-for="hiltSelected" class="form-label">Hilt</label>
-            @*  <input asp-for="hiltSelected" class="form-control" /> *@ <!--This line caused a "0" in the dropdown-->
-            <select asp-for="hiltSelected" asp-items="Model.hiltOptions" class="form-control">
-                <option value="">-- Select a Hilt --</option>
-            </select>
+    <!--Scripts for stlLoad.js-->
 
-            <span asp-validation-for="hiltSelected" class="text-danger"></span>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "/js/three/build/three.module.min.js",
+            "three/examples/jsm/loaders/STLLoader.js": "/js/three/examples/jsm/loaders/STLLoader.js"
+          }
+        }
+    </script>
+
+    <script type="module" src="~/js/editStlLoad.js"></script>
+    <script>
+        console.log("Inline script is running for Switch!");
+    </script>
+
+    <div class="container">
+        <div class="row">
+
+            <!--Div for the Three.js scene-->
+            <div class="col-md-8">
+                <div id="threejs-container-editHI"></div>
+            </div>
+
+
+            <!--Div for the form-->
+            <div class="col-md-4">
+
+                <!--Div for info-->
+                <div id="info">
+                    <p><i>The "grip" of the Lightsaber where the user holds it.</i></p>
+                </div>
+                <br />
+                <br />
+                <br />
+
+                <form asp-action="EditHilt" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="idGiven" />
+
+                    <div>
+                        <label asp-for="hiltSelected" class="form-label">Hilt</label>
+
+                        <select asp-for="hiltSelected" asp-items="Model.hiltOptions" id="componentSelectEdit" class="form-control">
+                            <option value="">-- Select a Hilt --</option>
+                        </select>
+
+                        <script>
+                            const stlFiles = @Html.Raw(Json.Serialize(Model.switchPath));
+
+                            document.getElementById("componentSelectEdit").addEventListener("change", function() {
+                                const selectedComponent = this.value;
+                                if (stlFiles[selectedComponent]) {
+                                    loadModel(stlFiles[selectedComponent]);
+                                }
+                            });
+
+                        </script>
+
+                        <span asp-validation-for="hiltSelected" class="text-danger"></span>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </form>
+            </div>
 
         </div>
+    </div>
 
-        <button type="submit" class="btn btn-primary">Next</button>
-    </form>
+
+
+    
 
 </body>
 </html>

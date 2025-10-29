@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputPath>F:\CAPSTONE ONLY\CapProject WGit\CapProject\BuildTemp\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,10 +14,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Lightsabers\" />
   </ItemGroup>
 
   <ItemGroup>

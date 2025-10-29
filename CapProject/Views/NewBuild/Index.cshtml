@@ -9,12 +9,43 @@
 
 <head>
     <title>New Build</title>
+
+    <!--Page-specific styles-->
+    <style>
+
+        title {
+            border-bottom: 1px solid #FFE81F;
+        }
+
+        #info {
+            border-bottom: 1px solid;
+            border-bottom-color: #2E557C;
+        }
+
+    </style>
+
+
 </head>
 
 
     <body>
         <br />
+     
+    <h2>Creating a New Lightsaber</h2>
+
         <br />
+        <br />
+
+
+        <!--Div for info-->
+        <div id="info">
+            <p>
+                <i>
+                    Who will wield this Lightsaber?
+                </i>
+            </p>
+        </div>
+
         <form asp-action="Index" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
 

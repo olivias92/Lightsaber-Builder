@@ -31,11 +31,19 @@ namespace CapProject.ViewModels {
 
 
 
+        public Dictionary<string, string> emitterPath { get; set; }
+        public Dictionary<string, string> switchPath { get; set; }
+        public Dictionary<string, string> hiltPath { get; set; }
+        public Dictionary<string, string> pommelPath { get; set; }
+
         public List<SelectListItem> emitterOptions { get; set; }
         public List<SelectListItem> switchOptions { get; set; }
         public List<SelectListItem> hiltOptions { get; set; }
         public List<SelectListItem> pommelOptions { get; set; }
         public List<SelectListItem> colorOptions { get; set; }
 
+        //public static implicit operator LightSaberVM(LightSaberVM v) {
+        //    throw new NotImplementedException();
+        //}
     } // End class
 } // End namespace
