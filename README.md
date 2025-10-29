@@ -1,6 +1,14 @@
 # Lightsaber-Builder
 
-NOTE: Please read this section or the .txt readme before running this application as problems may occcur
+---- IMPORTANT NOTES ----
+Please read this section or the .txt readme before running this application as problems may occcur
+
+This project was created for a college-level capstone course in Spring of 2025
+
+The .STL files used in this project are not owned by me in any way. These are public, free use 3D printer files. You may view these files in the link below.
+
+https://www.thingiverse.com/thing:4159433
+
 
 I.	Running the application
 1.	Please do NOT build the solution. Do not run “clean solution” or “build” in any form. This will cause Visual Studio to “lock out” the entire folder due to permission problems.
