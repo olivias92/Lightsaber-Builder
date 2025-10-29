@@ -64,6 +64,7 @@ b.	You may select a browser of your choice by selecting the dropdown next to the
 
  
 II.	About the Project
+
 This project is organized using the ASP.NET Core Model-View-Controller (MVC) Framework with C# Razor code. It also includes the following:
 
   •	HTML/CSS
@@ -82,9 +83,10 @@ The format of MVC are as follows:
 
 •	Contextual classes for database functions and other are included in the Models folder (C# 
 
-o	Additionally for certain data transfers in the webpages, a ViewModel folder holds a file for better functionality with this
+ •	Additionally for certain data transfers in the webpages, a ViewModel folder holds a file for better functionality with this
 
 •	Files that controller redirections and some error handlings are included in the Controllers folder (C#)
+
 
 Additional folders and files are as follows:
 
@@ -98,7 +100,9 @@ Additional folders and files are as follows:
 
 •		The lib folder for popper.js and Bootstrap files
 
+
 III.	Functions and Methods Used
+
 
 With the languages and tools mentioned previously, this project does CURD operations (Create, Update, Read, and Delete) using a local database. The user will go through the following prompts in creating an object:
 
